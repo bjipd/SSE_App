@@ -7,36 +7,35 @@ import com.dind.Sse_app.Enums.MatchStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Data
-@NoArgsConstructor 
 @AllArgsConstructor 
 public class Match {
-    private UUID id;
-    private String homeTeam;
-    private String awayTeam;
+    private final UUID id;
+    private final String homeTeam;
+    private final String awayTeam;
     private int homeTeamScore;
     private int awayTeamScore;
     private int homeTeamPenaltyScore;
     private int awayTeamPenaltyScore;
     private int minutes;
-   private MatchStatus status;
+   private MatchStatus status = MatchStatus.NOT_STARTED;
 
-   public MatchSnapshot snapshot(){
+   // synchronized: only one thread at a time may run any synchronized method of the SAME Match.
+   public synchronized MatchSnapshot snapshot(){
     return new MatchSnapshot();
    }
 
-   public MatchSnapshot addGoal(){
+   public synchronized MatchSnapshot addGoal(){
     return new MatchSnapshot();
    }
 
-   public void addPenalty(){
-
+   public synchronized MatchSnapshot addPenalty(){
+    return new MatchSnapshot();
    }
 
-   public void update(int minutes, MatchStatus status){
-    
+   public synchronized MatchSnapshot update(int minutes, MatchStatus status){
+    return new MatchSnapshot();
    }
 }
