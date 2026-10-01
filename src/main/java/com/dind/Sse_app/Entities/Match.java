@@ -20,9 +20,9 @@ public class Match {
     private int homeTeamPenaltyScore;
     private int awayTeamPenaltyScore;
     private int minutes;
-   private MatchStatus status = MatchStatus.NOT_STARTED;
+    private MatchStatus status = MatchStatus.NOT_STARTED;
 
-   // synchronized: only one thread at a time may run any synchronized method of the SAME Match.
+    // synchronized: only one thread at a time may run any synchronized method of the SAME Match.
    public synchronized MatchSnapshot snapshot(){
     return new MatchSnapshot();
    }
